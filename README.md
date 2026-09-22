@@ -1,36 +1,35 @@
-# Life Touch — Nhật ký 1 chạm
+# Life Touch — One-Tap Log
 
-Ứng dụng ghi nhận thói quen bằng một cú chạm. Không form, không ghi chú, không chọn giờ.
+An app to log habits with a single tap. No forms, no notes, no time selection.
 
-## Mô tả
+## Description
 
-Life Touch là app nhật ký thói quen cho Android. Thay vì nhập liệu chi tiết như các habit tracker thông thường, bạn chỉ cần chạm vào một biểu tượng — 💩 ☕ 😴 🏃 ❤️ 💊 🧘 💧 — ngay khi việc đó vừa xảy ra. App tự động ghi lại thời điểm, không cần chọn ngày giờ, không cần viết ghi chú, không cần xác nhận.
+Life Touch is a habit-logging app for Android. Instead of detailed data entry like typical habit trackers, you simply tap an icon — 💩 ☕ 😴 🏃 ❤️ 💊 🧘 💧 — the moment an activity occurs. The app automatically records the timestamp; there is no need to select dates or times, write notes, or confirm the entry.
 
-Sau một thời gian sử dụng, dữ liệu tự hiện ra quy luật sinh hoạt của riêng bạn: thời điểm hay gặp nhất, khoảng cách trung bình giữa các lần, ngày nào trong tuần xảy ra nhiều nhất. App không chấm điểm, không nhắc nhở kiểu "bạn đã fail hôm nay" — chỉ đưa dữ liệu, để bạn tự đọc quy luật của chính mình.
+Over time, the data reveals your personal routine patterns: the most common times, average intervals between occurrences, and the days of the week when activities happen most frequently. The app doesn't assign scores or issue "you failed today" reminders—it simply presents the data, allowing you to interpret your own patterns.
 
-## Tính năng
+## Features
 
-- **Ghi nhận 1 chạm**: lưới biểu tượng cho các hoạt động thường gặp (đại tiện, tiểu tiện, uống thuốc, uống nước, ăn, cà phê, tắm, đi bộ, vận động, làm việc, trà, thiền, ngủ trưa, đau đầu, rượu bia, thân mật, giấc ngủ...), chạm là ghi, không cần thao tác thêm.
-- **Widget màn hình chính**: đặt các biểu tượng hay dùng ra thẳng home screen, chạm ghi nhận mà không cần mở app.
-- **Dòng thời gian & Lịch**: xem lại toàn bộ sự kiện theo ngày, theo mốc thời gian.
-- **Phân tích quy luật sinh hoạt**: mỗi thói quen có phân tích riêng — giờ hay gặp, tần suất/ngày, khoảng cách trung bình giữa các lần, ngày nhiều nhất trong tuần, phân bố theo 24 giờ.
-- **Thống kê tổng hợp**: xem theo 7 / 30 / 90 ngày hoặc toàn bộ lịch sử, tổng số lượt ghi nhận và tần suất từng thói quen.
-- **Xuất dữ liệu Excel (.csv)**: xuất theo bộ lọc hiện tại hoặc theo khoảng thời gian tùy chọn, tương thích Microsoft Excel & Google Sheets, đầy đủ dấu tiếng Việt.
-- **Prompt AI lâm sàng**: tự tạo một đoạn prompt tóm tắt dữ liệu sức khỏe theo góc nhìn Đông - Tây y kết hợp, để mang đi trao đổi với bác sĩ hoặc dán vào công cụ AI khác.
-- **Theo dõi thể trạng & BMI**: nhập chiều cao, cân nặng, theo dõi chỉ số BMI và cân nặng chuẩn theo thời gian.
+- **One-tap logging**: A grid of icons for common activities (bowel movements, urination, medication, water intake, meals, coffee, showering, walking, exercise, work, tea, meditation, napping, headaches, alcohol, intimacy, sleep, etc.); tap to log instantly with no extra steps.
+- **Home screen widgets**: Place frequently used icons directly on your home screen to log activities without opening the app.
+- **Timeline & Calendar**: Review all events by day or chronologically.
+- **Routine analysis**: Individual analysis for each habit—common times, frequency per day, average interval between occurrences, peak days of the week, and 24-hour distribution.
+- **Aggregate statistics**: View data for the last 7, 30, or 90 days or your entire history; track total counts and frequency for each habit.
+- **Excel (.csv) export**: Export data based on current filters or custom date ranges; compatible with Microsoft Excel and Google Sheets, with full support for Vietnamese characters. - **Clinical AI Prompt**: Generate a prompt summarizing health data from an integrated Eastern-Western medicine perspective to share with your doctor or use in other AI tools.
+- **Physical Status & BMI Tracking**: Input your height and weight to track your BMI and ideal weight over time.
 
-## Quyền riêng tư
+## Privacy
 
-- Dữ liệu lưu local trên máy, không tự động đồng bộ lên đâu cả.
-- Không cần tài khoản, không đăng nhập, không email.
-- Không gửi dữ liệu cho bên thứ ba, kể cả Kabala — đơn vị phát triển app.
-- Dữ liệu là của người dùng: xuất ra Excel (.csv) bất cứ lúc nào, mang đi đâu tùy ý.
+- Data is stored locally on your device; there is no automatic cloud synchronization.
+- No account, login, or email required.
+- No data is sent to third parties, including Kabastro (the app developer).
+- You own your data: export it to Excel (.csv) at any time and use it however you wish.
 
-## Nền tảng
+## Platform
 
-- Android (APK), miễn phí.
-- Tải về: `habit.kabala.vn/download/android/life-touch.apk`
+- Android (APK), free of charge.
+- Download: `habit.kabastro.vn/download/android/life-touch.apk`
 
-## Nhà phát triển
+## Developer
 
-Xây dựng bởi **Kabala** — `habit.kabala.vn`
+Developed by **Kabastro** — `habit.kabastro.vn`
