@@ -451,6 +451,27 @@
   }
   .duo .ticket{width:min(220px,44vw);}
 
+  /* ---------- video demo ---------- */
+  .video-ticket{
+    width:min(300px,80vw);
+  }
+  .video-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:9/16;
+    border-radius:14px;
+    overflow:hidden;
+    background:#0F0D09;
+    border:1px solid var(--line);
+  }
+  .video-frame video{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    background:#0F0D09;
+  }
+
   /* ---------- lightbox ---------- */
   .lightbox{
     position:fixed;
@@ -701,6 +722,27 @@
     </div>
   </section>
 
+  <section id="demo">
+    <div class="feature-row reverse">
+      <div class="copy">
+        <p class="kicker" style="margin-bottom:6px" data-i18n="demo.kicker">SEE IT IN ACTION</p>
+        <h2 style="margin-bottom:14px" data-i18n="demo.h2">Watch the whole flow in one short video</h2>
+        <p data-i18n="demo.p1">From tapping an icon to reading the pattern later — here's Life Touch end to end.</p>
+      </div>
+      <div class="shot">
+        <div class="ticket video-ticket">
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="/images/0.jpg">
+              <source src="/video/video-demo-life-touch.mp4" type="video/mp4">
+              <span data-i18n="demo.fallback">Your browser doesn't support video playback.</span>
+            </video>
+          </div>
+          <p class="tag" data-i18n="demo.tag">DEMO · LIFE TOUCH</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="how-works">
     <div class="section-head">
       <p class="kicker" data-i18n="how.kicker">HOW IT WORKS</p>
@@ -937,6 +979,11 @@
       "hero.cta.primary": "Download APK for Android",
       "hero.cta.ghost": "See how it works",
       "hero.langs.lead": "App available in 4 languages —",
+      "demo.kicker": "SEE IT IN ACTION",
+      "demo.h2": "Watch the whole flow in one short video",
+      "demo.p1": "From tapping an icon to reading the pattern later — here's Life Touch end to end.",
+      "demo.tag": "DEMO · LIFE TOUCH",
+      "demo.fallback": "Your browser doesn't support video playback.",
       "how.kicker": "HOW IT WORKS",
       "how.h2": "Not a form. Just a tap.",
       "how.head": "Most habit trackers make you fill things in: pick a date, write a note, rate how you feel. Life Touch skips all of that.",
@@ -999,6 +1046,11 @@
       "hero.cta.primary": "Tải APK cho Android",
       "hero.cta.ghost": "Xem cách hoạt động",
       "hero.langs.lead": "App có sẵn 4 ngôn ngữ —",
+      "demo.kicker": "XEM APP HOẠT ĐỘNG",
+      "demo.h2": "Xem trọn luồng thao tác trong một video ngắn",
+      "demo.p1": "Từ việc chạm một biểu tượng đến lúc xem lại quy luật sau này — đây là Life Touch từ đầu đến cuối.",
+      "demo.tag": "DEMO · LIFE TOUCH",
+      "demo.fallback": "Trình duyệt của bạn không hỗ trợ phát video.",
       "how.kicker": "CÁCH HOẠT ĐỘNG",
       "how.h2": "Không phải form. Là một cái bấm.",
       "how.head": "Habit tracker thường bắt bạn nhập liệu: chọn ngày, viết ghi chú, tự đánh giá mức độ. Life Touch bỏ hết phần đó.",
