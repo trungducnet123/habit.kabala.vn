@@ -201,7 +201,7 @@
     display:flex;
     flex-wrap:wrap;
     gap:14px;
-    margin-bottom:34px;
+    margin-bottom:24px;
   }
   .btn-primary, .btn-ghost{
     font-family:'Be Vietnam Pro', sans-serif;
@@ -233,6 +233,7 @@
     display:flex;
     flex-wrap:wrap;
     gap:10px;
+    margin-bottom:22px;
   }
   .punch{
     width:46px;height:46px;
@@ -241,6 +242,23 @@
     border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center;
     font-size:1.28rem;
+  }
+
+  .lang-line{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+  }
+  .lang-line .lang-lead{
+    color:var(--ink-soft);
+  }
+  .lang-line .flags{
+    display:inline-flex;
+    gap:8px;
   }
 
   /* ---------- section shell ---------- */
@@ -327,6 +345,7 @@
     border-radius:22px;
     padding:12px 12px 16px;
     box-shadow: 0 18px 40px -22px rgba(0,0,0,0.35);
+    margin:0 auto;
   }
   .ticket::before{
     content:"";
@@ -340,12 +359,6 @@
     background-size:20px 18px;
     opacity:.9;
   }
-  .ticket img{
-    display:block;
-    width:100%;
-    border-radius:13px;
-    border:1px solid var(--line);
-  }
   .ticket .tag{
     margin-top:10px;
     font-family:'IBM Plex Mono',monospace;
@@ -354,13 +367,143 @@
     text-align:center;
   }
 
+  /* ---------- gallery / carousel ---------- */
+  .gallery-view{
+    position:relative;
+  }
+  .gallery-track{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-radius:13px;
+  }
+  .gallery-track::-webkit-scrollbar{display:none;}
+  .gallery-slide{
+    flex:0 0 100%;
+    scroll-snap-align:start;
+    min-width:0;
+  }
+  .gallery-zoom{
+    display:block;
+    width:100%;
+    padding:0;
+    margin:0;
+    border:none;
+    background:none;
+    cursor:zoom-in;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .gallery-zoom img{
+    display:block;
+    width:100%;
+    border-radius:13px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .gallery-slide .tag{margin-top:10px;}
+  .ticket.gallery.single .gallery-zoom{cursor:zoom-in;}
+  .gallery-nav{
+    position:absolute;
+    top:calc(50% - 12px);
+    width:34px;height:34px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.3);
+    transition:background .15s ease, color .15s ease;
+  }
+  .gallery-nav.prev{left:-8px;}
+  .gallery-nav.next{right:-8px;}
+  .gallery-nav:hover{background:var(--ink);color:var(--paper);}
+  .ticket.gallery.single .gallery-nav{display:none;}
+  .gallery-dots{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin-top:10px;
+  }
+  .gallery-dots .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--line);
+    padding:0;
+    border:none;
+    cursor:pointer;
+  }
+  .gallery-dots .dot.active{background:var(--stamp);}
+  .ticket.gallery.single .gallery-dots{display:none;}
+
   .duo{
     display:flex;
     gap:18px;
     justify-content:center;
     flex-wrap:wrap;
+    align-items:flex-start;
   }
   .duo .ticket{width:min(220px,44vw);}
+
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(10,8,5,0.86);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease;
+    padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+  }
+  .lightbox.open{opacity:1;pointer-events:auto;}
+  .lightbox-img{
+    max-width:min(920px,92vw);
+    max-height:86vh;
+    border-radius:14px;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.6);
+    object-fit:contain;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:calc(18px + env(safe-area-inset-top,0px));
+    right:calc(18px + env(safe-area-inset-right,0px));
+    width:40px;height:40px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,.18);}
+  .lightbox-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:46px;height:46px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    font-size:1.4rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lightbox-nav:hover{background:rgba(255,255,255,.18);}
+  .lightbox-nav.prev{left:calc(14px + env(safe-area-inset-left,0px));}
+  .lightbox-nav.next{right:calc(14px + env(safe-area-inset-right,0px));}
 
   /* ---------- home-screen widget mock ---------- */
   .homescreen{
@@ -504,6 +647,8 @@
     .feature-row .copy, .feature-row.reverse .copy,
     .feature-row .shot, .feature-row.reverse .shot{order:initial;}
     .feature-row .shot{order:-1;}
+    .gallery-nav.prev{left:2px;}
+    .gallery-nav.next{right:2px;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -548,6 +693,10 @@
           <div class="punch">🧘</div>
           <div class="punch">💧</div>
         </div>
+        <p class="lang-line">
+          <span class="lang-lead" data-i18n="hero.langs.lead">App available in 4 languages —</span>
+          <span class="flags" aria-hidden="true">🇬🇧 🇩🇪 🇫🇷 🇻🇳</span>
+        </p>
       </div>
     </div>
   </section>
@@ -563,20 +712,37 @@
         <p data-i18n="how.p1">Open the app and you see a familiar grid of icons: bathroom, meds, water, coffee, meditation, exercise... Something just happened — tap that icon. The app saves the time by itself, no questions, no confirmation needed.</p>
         <p data-i18n="how.p2">Want to adjust the time or add a note? You still can — it's just never required. The default is one tap, then back to whatever you were doing.</p>
       </div>
-      <div class="duo">
-        <div class="ticket">
-          <img src="/images/0.jpg" data-i18n-alt="how.img.alt" alt="">
-          <p class="tag" data-i18n="how.tag">WELCOME · SETTINGS</p>
-        </div>
-        
-        <div class="ticket">
-          <img src="/images/1.1.jpg" data-i18n-alt="how.img.alt" alt="">
-          <p class="tag" data-i18n="how.tag">ADD · CUSTOM</p>
-        </div>
-        
-        <div class="ticket">
-          <img src="/images/1.2.jpg" data-i18n-alt="how.img.alt" alt="Life Touch's Today screen with a grid of habit icons to tap and log">
-          <p class="tag" data-i18n="how.tag">SCREEN · LOGGING</p>
+      <div class="shot">
+        <div class="ticket gallery" data-gallery>
+          <div class="gallery-view">
+            <div class="gallery-track">
+              <div class="gallery-slide">
+                <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                  <img src="/images/0.jpg" data-i18n-alt="how.img0.alt" alt="Life Touch welcome and settings screen">
+                </button>
+                <p class="tag" data-i18n="how.tag0">WELCOME · SETTINGS</p>
+              </div>
+              <div class="gallery-slide">
+                <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                  <img src="/images/1.1.jpg" data-i18n-alt="how.img1.alt" alt="Life Touch screen for adding a custom habit icon">
+                </button>
+                <p class="tag" data-i18n="how.tag1">ADD · CUSTOM</p>
+              </div>
+              <div class="gallery-slide">
+                <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                  <img src="/images/1.2.jpg" data-i18n-alt="how.img2.alt" alt="Life Touch's Today screen with a grid of habit icons to tap and log">
+                </button>
+                <p class="tag" data-i18n="how.tag2">SCREEN · LOGGING</p>
+              </div>
+            </div>
+            <button class="gallery-nav prev" type="button" aria-label="Previous image">‹</button>
+            <button class="gallery-nav next" type="button" aria-label="Next image">›</button>
+          </div>
+          <div class="gallery-dots" role="tablist">
+            <button class="dot active" type="button" aria-label="Slide 1"></button>
+            <button class="dot" type="button" aria-label="Slide 2"></button>
+            <button class="dot" type="button" aria-label="Slide 3"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -628,18 +794,31 @@
           <div class="ledger-row"><span class="label" data-i18n="pattern.ledger.label3">Peak day</span><span class="val" data-i18n="pattern.ledger.val3">Monday</span></div>
         </div>
       </div>
-      <div class="duo">
-        <div class="ticket">
-          <img src="/images/2.1.jpg" data-i18n-alt="pattern.img.alt" alt="Life Touch's pattern-analysis screen for a single habit">
-          <p class="tag" data-i18n="pattern.tag">STATS · DETAIL</p>
+      <div class="shot">
+        <div class="ticket gallery" data-gallery>
+          <div class="gallery-view">
+            <div class="gallery-track">
+              <div class="gallery-slide">
+                <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                  <img src="/images/2.1.jpg" data-i18n-alt="pattern.img0.alt" alt="Life Touch stats detail screen for a habit">
+                </button>
+                <p class="tag" data-i18n="pattern.tag0">STATS · DETAIL</p>
+              </div>
+              <div class="gallery-slide">
+                <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                  <img src="/images/2.2.jpg" data-i18n-alt="pattern.img1.alt" alt="Life Touch's pattern-analysis screen for a single habit">
+                </button>
+                <p class="tag" data-i18n="pattern.tag1">SCREEN · PATTERN ANALYSIS</p>
+              </div>
+            </div>
+            <button class="gallery-nav prev" type="button" aria-label="Previous image">‹</button>
+            <button class="gallery-nav next" type="button" aria-label="Next image">›</button>
+          </div>
+          <div class="gallery-dots" role="tablist">
+            <button class="dot active" type="button" aria-label="Slide 1"></button>
+            <button class="dot" type="button" aria-label="Slide 2"></button>
+          </div>
         </div>
-        
-        <div class="ticket">
-          <img src="/images/2.2.jpg" data-i18n-alt="pattern.img.alt" alt="Life Touch's pattern-analysis screen for a single habit">
-          <p class="tag" data-i18n="pattern.tag">SCREEN · PATTERN ANALYSIS</p>
-        </div>
-        
-       
       </div>
     </div>
   </section>
@@ -650,16 +829,31 @@
       <h2 data-i18n="stats.h2">Roll up a month, or bring it to your doctor</h2>
       <p data-i18n="stats.head">See the frequency of every habit over 7 / 30 / 90 days, or your entire history. Need to talk to a doctor or specialist? Life Touch drafts a summary prompt from your data, from a combined Eastern-Western medicine angle — copy it and paste it wherever you need.</p>
     </div>
-    <div class="duo">
-       <div class="ticket">
-          <img src="/images/2.3.jpg" data-i18n-alt="pattern.img.alt" alt="Life Touch's pattern-analysis screen for a single habit">
-          <p class="tag" data-i18n="pattern.tag">HEALTHY · BMI</p>
+    <div class="shot">
+      <div class="ticket gallery" data-gallery>
+        <div class="gallery-view">
+          <div class="gallery-track">
+            <div class="gallery-slide">
+              <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                <img src="/images/2.3.jpg" data-i18n-alt="stats.img0.alt" alt="Life Touch BMI and body-metrics tracking screen">
+              </button>
+              <p class="tag" data-i18n="stats.tag0">HEALTH · BMI</p>
+            </div>
+            <div class="gallery-slide">
+              <button type="button" class="gallery-zoom" data-lightbox-trigger>
+                <img src="/images/2.4.jpg" data-i18n-alt="stats.img1.alt" alt="Life Touch AI prompt explorer screen">
+              </button>
+              <p class="tag" data-i18n="stats.tag1">AI · EXPLORER</p>
+            </div>
+          </div>
+          <button class="gallery-nav prev" type="button" aria-label="Previous image">‹</button>
+          <button class="gallery-nav next" type="button" aria-label="Next image">›</button>
         </div>
-        
-        <div class="ticket">
-          <img src="/images/2.4.jpg" data-i18n-alt="pattern.img.alt" alt="Life Touch's pattern-analysis screen for a single habit">
-          <p class="tag" data-i18n="pattern.tag">AI · EXPLORER</p>
+        <div class="gallery-dots" role="tablist">
+          <button class="dot active" type="button" aria-label="Slide 1"></button>
+          <button class="dot" type="button" aria-label="Slide 2"></button>
         </div>
+      </div>
     </div>
   </section>
 
@@ -690,8 +884,10 @@
         </ul>
       </div>
       <div class="shot">
-        <div class="ticket">
-          <img src="/images/3.jpg" data-i18n-alt="privacy.img.alt" alt="Life Touch's Excel export screen">
+        <div class="ticket gallery single" data-gallery>
+          <button type="button" class="gallery-zoom" data-lightbox-trigger>
+            <img src="/images/3.jpg" data-i18n-alt="privacy.img.alt" alt="Life Touch's Excel export screen">
+          </button>
           <p class="tag" data-i18n="privacy.tag">DATA EXPORT · EXCEL (.CSV)</p>
         </div>
       </div>
@@ -710,6 +906,7 @@
         </div>
       </div>
       <div class="foot-links">
+        <a href="mailto:habit@kabastro.com">habit@kabastro.com</a>
         <a data-i18n="footer.download" href="https://habit.kabastro.vn/download/android/life-touch.apk">Download APK</a>
         <a href="https://habit.kabastro.vn">habit.kabastro.vn</a>
         <a data-i18n="footer.top" href="#top">Back to top</a>
@@ -718,6 +915,13 @@
     <p class="foot-fine" data-i18n="footer.fine">LIFE TOUCH · FREE · ANDROID · DATA STAYS LOCAL</p>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="Close">×</button>
+  <button class="lightbox-nav prev" type="button" aria-label="Previous image">‹</button>
+  <img class="lightbox-img" src="" alt="">
+  <button class="lightbox-nav next" type="button" aria-label="Next image">›</button>
+</div>
 
 <script>
 (function(){
@@ -730,13 +934,18 @@
       "hero.lede": "No forms, no notes, no picking a time. Something just happened — tap the icon, Life Touch logs the moment. Read the pattern later, whenever you want.",
       "hero.cta.primary": "Download APK for Android",
       "hero.cta.ghost": "See how it works",
+      "hero.langs.lead": "App available in 4 languages —",
       "how.kicker": "HOW IT WORKS",
       "how.h2": "Not a form. Just a tap.",
       "how.head": "Most habit trackers make you fill things in: pick a date, write a note, rate how you feel. Life Touch skips all of that.",
       "how.p1": "Open the app and you see a familiar grid of icons: bathroom, meds, water, coffee, meditation, exercise... Something just happened — tap that icon. The app saves the time by itself, no questions, no confirmation needed.",
       "how.p2": "Want to adjust the time or add a note? You still can — it's just never required. The default is one tap, then back to whatever you were doing.",
-      "how.img.alt": "Life Touch's Today screen with a grid of habit icons to tap and log",
-      "how.tag": "SCREEN · LOGGING",
+      "how.img0.alt": "Life Touch welcome and settings screen",
+      "how.tag0": "WELCOME · SETTINGS",
+      "how.img1.alt": "Life Touch screen for adding a custom habit icon",
+      "how.tag1": "ADD · CUSTOM",
+      "how.img2.alt": "Life Touch's Today screen with a grid of habit icons to tap and log",
+      "how.tag2": "SCREEN · LOGGING",
       "widget.kicker": "HOME SCREEN",
       "widget.h2": "Log without opening the app",
       "widget.p1": "Add the Life Touch widget straight to your home screen. Something just happened — tap the icon right there, no opening the app, no waiting to load, no digging through the app drawer.",
@@ -751,15 +960,17 @@
       "pattern.ledger.val2": "~1.2 hours",
       "pattern.ledger.label3": "Peak day",
       "pattern.ledger.val3": "Monday",
-      "pattern.img.alt": "Life Touch's pattern-analysis screen for a single habit",
-      "pattern.tag": "SCREEN · PATTERN ANALYSIS",
+      "pattern.img0.alt": "Life Touch stats detail screen for a habit",
+      "pattern.tag0": "STATS · DETAIL",
+      "pattern.img1.alt": "Life Touch's pattern-analysis screen for a single habit",
+      "pattern.tag1": "SCREEN · PATTERN ANALYSIS",
       "stats.kicker": "STATS & AI PROMPT",
       "stats.h2": "Roll up a month, or bring it to your doctor",
       "stats.head": "See the frequency of every habit over 7 / 30 / 90 days, or your entire history. Need to talk to a doctor or specialist? Life Touch drafts a summary prompt from your data, from a combined Eastern-Western medicine angle — copy it and paste it wherever you need.",
-      "stats.img1.alt": "Life Touch's aggregated stats screen showing habit frequency",
-      "stats.tag1": "30-DAY STATS",
-      "stats.img2.alt": "Life Touch's clinical AI prompt screen combining Eastern and Western medicine",
-      "stats.tag2": "CLINICAL AI PROMPT",
+      "stats.img0.alt": "Life Touch BMI and body-metrics tracking screen",
+      "stats.tag0": "HEALTH · BMI",
+      "stats.img1.alt": "Life Touch AI prompt explorer screen",
+      "stats.tag1": "AI · EXPLORER",
       "privacy.kicker": "YOUR DATA",
       "privacy.h2": "Absolutely private — and still yours",
       "privacy.item1.strong": "Stored locally on your phone.",
@@ -785,13 +996,18 @@
       "hero.lede": "Không form, không ghi chú, không chọn giờ. Thấy việc gì vừa xảy ra — bấm biểu tượng, Life Touch tự ghi lại thời điểm. Xem quy luật sau, khi bạn cần.",
       "hero.cta.primary": "Tải APK cho Android",
       "hero.cta.ghost": "Xem cách hoạt động",
+      "hero.langs.lead": "App có sẵn 4 ngôn ngữ —",
       "how.kicker": "CÁCH HOẠT ĐỘNG",
       "how.h2": "Không phải form. Là một cái bấm.",
       "how.head": "Habit tracker thường bắt bạn nhập liệu: chọn ngày, viết ghi chú, tự đánh giá mức độ. Life Touch bỏ hết phần đó.",
       "how.p1": "Mở app, thấy lưới biểu tượng quen thuộc: đại tiện, uống thuốc, uống nước, cà phê, thiền, vận động... Việc gì vừa xảy ra, chạm vào biểu tượng đó. App tự lưu giờ phút, không hỏi thêm gì, không bắt xác nhận.",
       "how.p2": "Cần điều chỉnh giờ hay thêm ghi chú? Vẫn làm được — nhưng không bắt buộc. Mặc định là chạm một cái rồi quay lại việc đang làm.",
-      "how.img.alt": "Màn hình Hôm nay của Life Touch với lưới biểu tượng thói quen để chạm ghi nhận",
-      "how.tag": "MÀN HÌNH · GHI NHẬN",
+      "how.img0.alt": "Màn hình chào mừng và cài đặt của Life Touch",
+      "how.tag0": "CHÀO MỪNG · CÀI ĐẶT",
+      "how.img1.alt": "Màn hình thêm biểu tượng thói quen tùy chỉnh trong Life Touch",
+      "how.tag1": "THÊM · TÙY CHỈNH",
+      "how.img2.alt": "Màn hình Hôm nay của Life Touch với lưới biểu tượng thói quen để chạm ghi nhận",
+      "how.tag2": "MÀN HÌNH · GHI NHẬN",
       "widget.kicker": "MÀN HÌNH CHÍNH",
       "widget.h2": "Không cần mở app cũng ghi được",
       "widget.p1": "Thêm widget Life Touch ra thẳng màn hình chính điện thoại. Việc gì vừa xảy ra, chạm vào biểu tượng ngay trên đó — không mở app, không chờ tải, không lục tìm icon trong ngăn kéo ứng dụng.",
@@ -806,15 +1022,17 @@
       "pattern.ledger.val2": "~1.2 giờ",
       "pattern.ledger.label3": "Ngày nhiều nhất",
       "pattern.ledger.val3": "Thứ Hai",
-      "pattern.img.alt": "Màn hình phân tích quy luật sinh hoạt cho một thói quen trong Life Touch",
-      "pattern.tag": "MÀN HÌNH · QUY LUẬT SINH HOẠT",
+      "pattern.img0.alt": "Màn hình thống kê chi tiết một thói quen trong Life Touch",
+      "pattern.tag0": "THỐNG KÊ · CHI TIẾT",
+      "pattern.img1.alt": "Màn hình phân tích quy luật sinh hoạt cho một thói quen trong Life Touch",
+      "pattern.tag1": "MÀN HÌNH · QUY LUẬT SINH HOẠT",
       "stats.kicker": "THỐNG KÊ & PROMPT AI",
       "stats.h2": "Gộp cả tháng lại, hoặc mang đi hỏi bác sĩ",
       "stats.head": "Xem tần suất mọi thói quen theo 7 / 30 / 90 ngày, hoặc toàn bộ lịch sử. Cần trao đổi với bác sĩ hay chuyên gia, Life Touch dựng sẵn một đoạn prompt tóm tắt dữ liệu theo góc nhìn Đông - Tây y — sao chép rồi dán vào bất kỳ đâu bạn cần.",
-      "stats.img1.alt": "Màn hình Thống kê tổng hợp tần suất các thói quen trong Life Touch",
-      "stats.tag1": "THỐNG KÊ 30 NGÀY",
-      "stats.img2.alt": "Màn hình tạo prompt AI lâm sàng kết hợp Đông Tây y trong Life Touch",
-      "stats.tag2": "PROMPT AI LÂM SÀNG",
+      "stats.img0.alt": "Màn hình theo dõi BMI và thể trạng trong Life Touch",
+      "stats.tag0": "SỨC KHỎE · BMI",
+      "stats.img1.alt": "Màn hình khám phá prompt AI trong Life Touch",
+      "stats.tag1": "AI · KHÁM PHÁ",
       "privacy.kicker": "DỮ LIỆU CỦA BẠN",
       "privacy.h2": "Riêng tư tuyệt đối — và vẫn là của bạn",
       "privacy.item1.strong": "Lưu local trên máy.",
@@ -876,6 +1094,100 @@
   });
 
   applyLanguage(initialLanguage());
+
+  /* ---------- galleries + lightbox ---------- */
+  var lightbox = document.getElementById("lightbox");
+  var lbImg = lightbox.querySelector(".lightbox-img");
+  var lbPrev = lightbox.querySelector(".lightbox-nav.prev");
+  var lbNext = lightbox.querySelector(".lightbox-nav.next");
+  var lbClose = lightbox.querySelector(".lightbox-close");
+  var lbImages = [];
+  var lbIndex = 0;
+
+  function updateLightbox(){
+    var item = lbImages[lbIndex];
+    if(!item) return;
+    lbImg.src = item.src;
+    lbImg.alt = item.alt || "";
+    var multi = lbImages.length > 1;
+    lbPrev.style.display = multi ? "flex" : "none";
+    lbNext.style.display = multi ? "flex" : "none";
+  }
+  function openLightbox(images, index){
+    lbImages = images;
+    lbIndex = index;
+    updateLightbox();
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLightbox(){
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  function lbShowPrev(){ lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; updateLightbox(); }
+  function lbShowNext(){ lbIndex = (lbIndex + 1) % lbImages.length; updateLightbox(); }
+
+  lbPrev.addEventListener("click", lbShowPrev);
+  lbNext.addEventListener("click", lbShowNext);
+  lbClose.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", function(e){
+    if(!lightbox.classList.contains("open")) return;
+    if(e.key === "Escape") closeLightbox();
+    if(e.key === "ArrowLeft") lbShowPrev();
+    if(e.key === "ArrowRight") lbShowNext();
+  });
+
+  document.querySelectorAll("[data-gallery]").forEach(function(gallery){
+    var track = gallery.querySelector(".gallery-track");
+    var zoomButtons = Array.prototype.slice.call(gallery.querySelectorAll("[data-lightbox-trigger]"));
+    var images = zoomButtons.map(function(btn){
+      var img = btn.querySelector("img");
+      return { src: img.getAttribute("src"), alt: img.getAttribute("alt") };
+    });
+
+    zoomButtons.forEach(function(btn, i){
+      btn.addEventListener("click", function(){
+        openLightbox(images, i);
+      });
+    });
+
+    if(!track) return; // single-image ticket, nothing else to wire
+
+    var prevBtn = gallery.querySelector(".gallery-nav.prev");
+    var nextBtn = gallery.querySelector(".gallery-nav.next");
+    var dots = Array.prototype.slice.call(gallery.querySelectorAll(".gallery-dots .dot"));
+    var slideCount = gallery.querySelectorAll(".gallery-slide").length;
+
+    if(slideCount <= 1){
+      gallery.classList.add("single");
+      return;
+    }
+
+    function currentIndex(){
+      return Math.round(track.scrollLeft / track.clientWidth) || 0;
+    }
+    function goTo(i){
+      i = Math.max(0, Math.min(slideCount - 1, i));
+      track.scrollTo({ left: track.clientWidth * i, behavior: "smooth" });
+    }
+    if(prevBtn) prevBtn.addEventListener("click", function(){ goTo(currentIndex() - 1); });
+    if(nextBtn) nextBtn.addEventListener("click", function(){ goTo(currentIndex() + 1); });
+    dots.forEach(function(dot, i){
+      dot.addEventListener("click", function(){ goTo(i); });
+    });
+
+    var scrollTimer;
+    track.addEventListener("scroll", function(){
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function(){
+        var i = currentIndex();
+        dots.forEach(function(dot, idx){ dot.classList.toggle("active", idx === i); });
+      }, 80);
+    });
+  });
 })();
 </script>
 </body>
