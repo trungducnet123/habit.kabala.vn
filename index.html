@@ -76,46 +76,39 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:22px clamp(20px,5vw,56px);
-    padding-top:calc(22px + env(safe-area-inset-top,0px));
+    gap:10px;
+    padding:20px clamp(18px,5vw,56px);
+    padding-top:calc(20px + env(safe-area-inset-top,0px));
   }
   .brand{
     display:flex;
     align-items:baseline;
-    gap:9px;
+    gap:8px;
     font-weight:800;
-    font-size:1.15rem;
+    font-size:1.1rem;
     letter-spacing:-0.01em;
     text-decoration:none;
+    min-width:0;
   }
   .brand .dot{
     width:9px;height:9px;border-radius:50%;
     background:var(--stamp);
     display:inline-block;
+    flex:none;
     transform:translateY(-1px);
   }
   .brand small{
     font-weight:500;
-    font-size:0.7rem;
+    font-size:0.68rem;
     color:var(--ink-soft);
-  }
-  .top-cta{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.78rem;
-    font-weight:600;
-    text-decoration:none;
-    border:1.5px solid var(--ink);
-    padding:8px 16px;
-    border-radius:100px;
     white-space:nowrap;
-    transition:background .15s ease, color .15s ease;
   }
-  .top-cta:hover{background:var(--ink);color:var(--paper);}
 
   .top-right{
     display:flex;
     align-items:center;
     gap:14px;
+    flex:none;
   }
   .lang-switch{
     display:inline-flex;
@@ -123,6 +116,7 @@
     border-radius:100px;
     padding:3px;
     gap:2px;
+    flex:none;
   }
   .lang-switch button{
     font-family:'IBM Plex Mono',monospace;
@@ -141,6 +135,31 @@
     color:var(--paper);
   }
   .lang-switch button:not([aria-pressed="true"]):hover{color:var(--ink);}
+
+  /* ---------- floating download button ---------- */
+  .fab-download{
+    display:none;
+    position:fixed;
+    right:calc(16px + env(safe-area-inset-right,0px));
+    bottom:calc(16px + env(safe-area-inset-bottom,0px));
+    z-index:150;
+    align-items:center;
+    gap:7px;
+    background:var(--stamp);
+    color:#fff;
+    font-family:'Be Vietnam Pro', sans-serif;
+    font-weight:700;
+    font-size:0.86rem;
+    padding:13px 18px;
+    border-radius:100px;
+    text-decoration:none;
+    white-space:nowrap;
+    box-shadow:0 10px 26px -8px rgba(0,0,0,.45), 0 3px 0 var(--stamp-dark);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .fab-download:hover{transform:translateY(-2px);}
+  .fab-download:active{transform:translateY(1px);box-shadow:0 4px 12px -6px rgba(0,0,0,.4), 0 1px 0 var(--stamp-dark);}
+  .fab-download .fab-icon{font-size:0.95rem;line-height:1;}
 
   /* ---------- hero ---------- */
   .hero{
@@ -670,6 +689,16 @@
     .feature-row .shot{order:-1;}
     .gallery-nav.prev{left:2px;}
     .gallery-nav.next{right:2px;}
+    .top-cta{display:none;}
+    .fab-download{display:inline-flex;}
+  }
+
+  @media (max-width:380px){
+    .brand{font-size:1rem;gap:6px;}
+    .brand small{display:none;}
+    .lang-switch button{padding:5px 9px;font-size:0.68rem;}
+    .fab-download span:not(.fab-icon){display:none;}
+    .fab-download{padding:14px;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -692,6 +721,11 @@
     <a class="top-cta" data-i18n="nav.download" href="https://habit.kabastro.vn/download/android/life-touch.apk">Download APK</a>
   </div>
 </div>
+
+<a class="fab-download" href="https://habit.kabastro.vn/download/android/life-touch.apk" data-i18n-aria="nav.download">
+  <span class="fab-icon" aria-hidden="true">⬇</span>
+  <span data-i18n="nav.download">Download APK</span>
+</a>
 
 <div class="wrap">
   <section class="hero" id="top">
@@ -1124,6 +1158,10 @@
     document.querySelectorAll("[data-i18n-alt]").forEach(function(el){
       var key = el.getAttribute("data-i18n-alt");
       if(dict[key] !== undefined) el.setAttribute("alt", dict[key]);
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function(el){
+      var key = el.getAttribute("data-i18n-aria");
+      if(dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
     });
     document.querySelectorAll("[data-lang-btn]").forEach(function(btn){
       var isActive = btn.getAttribute("data-lang-btn") === lang;
